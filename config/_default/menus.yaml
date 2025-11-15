@@ -11,3 +11,6 @@ main:
   - name: Uses
     url: uses/
     weight: 30
+  - name: About
+    url: https://mioyn.github.io/about
+    weight: 40
