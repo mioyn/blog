@@ -8,8 +8,8 @@ main:
   - name: Topics
     url: tags/
     weight: 20
-  - name: Uses
-    url: uses/
+  # - name: Uses
+  #   url: uses/
     weight: 30
   - name: About
     url: https://mioyn.github.io/about
