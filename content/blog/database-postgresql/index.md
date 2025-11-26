@@ -70,232 +70,244 @@ sale_id,customer_id,product,region,amount,sale_date
 ### 1. Show all records from the sales_data table.
 
 ```sql
-select * from sales_data;
+SELECT * FROM sales_data;
 ```
 
 ### 2. Retrieve the first 10 rows from the sales_data table.
 
 ```sql
-select * from sales_data LIMIT 10;
+SELECT * FROM sales_data LIMIT 10;
 ```
 
 ### 3. List all unique regions where sales occurred.
 
 ```sql
-select DISTINCT region from sales_data;
+SELECT DISTINCT region FROM sales_data;
 ```
 
 ### 4. List all distinct products sold.
 
 ```sql
-select DISTINCT product from sales_data;
+SELECT DISTINCT product FROM sales_data;
 ```
 
 ### 5. Show all sales made in the North region.
 
 ```sql
-select * from sales_data where region = 'North';
+SELECT * FROM sales_data WHERE region = 'North';
 ```
 
 ### 6. Retrieve all sales where the amount is greater than 500.
 
 ```sql
-select * from sales_data where amount > 500;
+SELECT * FROM sales_data WHERE amount > 500;
 ```
 
 ### 7. Find all sales that occurred on January 1, 2024.
 
 ```sql
-select * from sales_data where sale_date = '2024-01-01';
+SELECT * FROM sales_data WHERE sale_date = '2024-01-01';
 ```
 
 ### 8. Find laptop sales made in the South region.
 
 ```sql
-select * from sales_data where region = 'South' AND product = 'Laptop';
+SELECT * FROM sales_data WHERE region = 'South' AND product = 'Laptop';
 ```
 
 ### 9. Show all sales made in either the East or West region.
 
 ```sql
-select * from sales_data where region = 'East' OR region = 'West';
+SELECT * FROM sales_data WHERE region = 'East' OR region = 'West';
 ```
 
 ### 10. Retrieve all sales except those where the product is Mobile.
 
 ```sql
-select * from sales_data where product != 'Mobile';
+SELECT * FROM sales_data WHERE product != 'Mobile';
 ```
 
 ### 11. Display all sales sorted by amount from highest to lowest.
 
 ```sql
-select * from sales_data order by amount desc;
+SELECT * FROM sales_data ORDER BY amount DESC;
 ```
 
 ### 12. Show the earliest 10 sales based on sale date.
 
 ```sql
-select * from sales_data order by sale_date limit 10;
+SELECT * FROM sales_data ORDER BY sale_date LIMIT 10;
 ```
 
 ### 13. Retrieve all sales where the product name starts with the letter ‘P’.
 
 ```sql
-select * from sales_data where product like 'P%';
+SELECT * FROM sales_data WHERE product LIKE 'P%';
 ```
 
 ### 14. Show all sales where the region name contains the letter ‘a’.
 
 ```sql
-select * from sales_data where region like '%a%';
+SELECT * FROM sales_data WHERE region LIKE '%a%';
 ```
 
 ### 15. Retrieve all sales made in North or East regions.
 
 ```sql
-select * from sales_data where region in ('North', 'East');
+SELECT * FROM sales_data WHERE region IN ('North', 'East');
 ```
 
 ### 16. Find all sales where the amount is between 200 and 800.
 
 ```sql
-select * from sales_data where amount between 200 and 800;
+SELECT * FROM sales_data WHERE amount BETWEEN 200 AND 800;
 ```
 
 ### 17. Retrieve sales made between January 1 and January 15, 2024.
 
 ```sql
-select * from sales_data where sale_date between '2024-01-01' and '2024-01-15';
+SELECT * FROM sales_data WHERE sale_date BETWEEN '2024-01-01' AND '2024-01-15';
 ```
 
 ### 18. Calculate the total sales amount.
 
 ```sql
-select sum(amount) from sales_data;
+SELECT SUM(amount) FROM sales_data;
 ```
 
 ### 19. Find the average sale amount.
 
 ```sql
-select avg(amount) from sales_data;
+SELECT AVG(amount) FROM sales_data;
 ```
 
 ### 20. Count the total number of sales records.
 
 ```sql
-select count(*) from sales_data;
+SELECT COUNT(*) FROM sales_data;
 ```
 
 ### 21. How many distinct products were sold?
 
 ```sql
-select count(DISTINCT product) from sales_data;
+SELECT COUNT(DISTINCT product) FROM sales_data;
 ```
 
 ### 22. What is the highest sales amount?
 
 ```sql
-select max(amount) from sales_data;
+SELECT MAX(amount) FROM sales_data;
 ```
 
 ### 23. What is the lowest sales amount?
 
 ```sql
-select min(amount) from sales_data;
+SELECT MIN(amount) FROM sales_data;
 ```
 
 ### 24. Calculate total sales amount for each region.
 
 ```sql
-select region, SUM(amount) from sales_data group by region;
+SELECT region, SUM(amount) FROM sales_data GROUP BY region;
 ```
 
 ### 25. Count how many times each product was sold.
 
 ```sql
-select product, count(product) from sales_data group by product;
+SELECT product, COUNT(product) FROM sales_data GROUP BY product;
 ```
 
 ### 26. Find the average sales amount for each region.
 
 ```sql
-select region, avg(amount) as avg_amt from sales_data group by region;
+SELECT region, AVG(amount) AS avg_amt FROM sales_data GROUP BY region;
 ```
 
 ### 27. Show regions whose total sales exceed 3000.
 
 ```sql
-select region, sum(amount) as sal_amt
-from sales_data
-group by region
-having sum(amount) > 3000;
+SELECT region, SUM(amount) AS sal_amt
+FROM sales_data
+GROUP BY region
+having SUM(amount) > 3000;
 ```
 
 ### 28. List products that were sold more than 2 times.
 
 ```sql
-select product, count(product)
-from sales_data
-group by product
-having count(product) > 2;
+SELECT product, COUNT(product)
+FROM sales_data
+GROUP BY product
+HAVING COUNT(product) > 2;
 ```
 
 ### 29. Find all North region sales where the product starts with ‘C’, sorted by amount descending.
 
 ```sql
-select * from sales_data
-where region = 'North' and product like 'C%'
-order by amount desc;
+SELECT * FROM sales_data
+WHERE region = 'North' AND product LIKE 'C%'
+ORDER BY amount DESC;
 ```
 
 ### 30. Retrieve sales over 500 from East or West regions.
 
 ```sql
-select * from sales_data
-where amount > 500 and region in ('East', 'West');
+SELECT * FROM sales_data
+WHERE amount > 500 AND region in ('East', 'West');
 ```
 
 ### 31. Find all Phone sales between January 1 and January 10, 2024.
 
 ```sql
-select * from sales_data
-where product = 'Phone'
-and sale_date between '2024-01-01' and '2024-01-10';
+SELECT * FROM sales_data
+WHERE product = 'Phone'
+AND sale_date BETWEEN '2024-01-01' AND '2024-01-10';
 ```
 
 ### 32. Find the top 3 customers by total purchase amount.
 
 ```sql
-select customer_id, sum(amount) as tot_sum
-from sales_data
-group by customer_id
-order by tot_sum desc
-limit 3;
+SELECT customer_id, SUM(amount) AS tot_sum
+FROM sales_data
+GROUP BY customer_id
+ORDER BY tot_sum desc
+LIMIT 3;
 ```
 
 ### 33. Show total and average sales amount for each region.
 
 ```sql
-select sum(amount) as tot_sl, AVG(amount) as avg_sal, region
-from sales_data
-group by region;
+SELECT SUM(amount) AS tot_sl, AVG(amount) AS avg_sal, region
+FROM sales_data
+GROUP BY region;
 ```
 
 ### 34. Calculate total sales for each month.
 
 ```sql
-select EXTRACT(MONTH from sale_date) as mon, sum(amount)
-from sales_data
-group by mon;
+SELECT EXTRACT(MONTH FROM sale_date) AS mon, SUM(amount)
+FROM sales_data
+GROUP BY mon;
 ```
 
 ### 35. Calculate daily total sales by sale date.
 
 ```sql
-select EXTRACT(day from sale_date) as dy, sum(amount)
-from sales_data
-group by sale_date;
+SELECT EXTRACT(day FROM sale_date) AS dy, SUM(amount)
+FROM sales_data
+GROUP BY sale_date;
 ```
+
+### Try it.
+Find Tablet or Camera sales over 800
+Sales between two dates and not in the North
+Sales for Camera in the region West
+Customers who bought more than one product type
+Highest 5 amounts
+Latest 3 sales
+Total sales per product
+Average sales per customer
+Highest sale per region
+
 
 ## Did you find this page helpful? Consider sharing it 🙌
