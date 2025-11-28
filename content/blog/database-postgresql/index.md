@@ -300,13 +300,21 @@ GROUP BY sale_date;
 
 ### Try it.
 Find Tablet or Camera sales over 800
+
 Sales between two dates and not in the North
+
 Sales for Camera in the region West
+
 Customers who bought more than one product type
+
 Highest 5 amounts
+
 Latest 3 sales
+
 Total sales per product
+
 Average sales per customer
+
 Highest sale per region
 
 
