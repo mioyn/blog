@@ -9,7 +9,7 @@ tags:
   - SQL
 image:
   caption: ''
-
+editable: false
 # External Links (Buttons)
 links:
   - name: Working with PostgreSQL
