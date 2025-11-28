@@ -12,7 +12,7 @@ image:
 
 # External Links (Buttons)
 links:
-  - name: Some simple PostgreSQL to start learning SQL 
+  - name: Working with PostgreSQL
     url: blog/database-postgresql
 ---
 
