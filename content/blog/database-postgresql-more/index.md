@@ -1,7 +1,7 @@
 ---
 title: Advanced SQL using PostgreSQL
 summary: SQL techniques including conditions, nested CASE statements, date handling with CURRENT_DATE, numeric functions like CEIL, FLOOR, and ROUND, string manipulation with SUBSTRING and CONCAT, and essential tools such as EXTRACT, CAST, and COALESCE.
-date: 2025-11-26
+date: 2025-11-28
 authors:
   - admin
 tags:
