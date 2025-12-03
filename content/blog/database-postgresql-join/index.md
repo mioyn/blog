@@ -114,7 +114,7 @@ INNER JOIN customers c ON o.customer_id = c.customer_id
 INNER JOIN products p ON o.product_id = p.product_id;
 ```
 
-###2. Orders placed by customers from the West region
+### 2. Orders placed by customers from the West region
 
 ```sql
 SELECT o.*, c.customer_name
@@ -123,7 +123,7 @@ INNER JOIN customers c ON o.customer_id = c.customer_id
 WHERE c.region = 'West';
 ```
 
-###3. Product category, price, and order quantity
+### 3. Product category, price, and order quantity
 
 ```sql
 SELECT p.category, p.price, o.quantity
@@ -131,7 +131,7 @@ FROM orders o
 INNER JOIN products p ON o.product_id = p.product_id;
 ```
 
-###4. Orders placed in 2023
+### 4. Orders placed in 2023
 
 ```sql
 SELECT o.*, c.customer_name
@@ -140,7 +140,7 @@ INNER JOIN customers c ON o.customer_id = c.customer_id
 WHERE EXTRACT(YEAR FROM o.sale_date) = 2023;
 ```
 
-###5. Orders with Electronics products
+### 5. Orders with Electronics products
 
 ```sql
 SELECT o.*, p.product_name
@@ -149,7 +149,7 @@ INNER JOIN products p ON o.product_id = p.product_id
 WHERE p.category = 'Electronics';
 ```
 
-###6. Customers whose signup date is before order date
+### 6. Customers whose signup date is before order date
 
 ```sql
 SELECT o.*, c.customer_name, c.signup_date
@@ -158,7 +158,7 @@ INNER JOIN customers c ON o.customer_id = c.customer_id
 WHERE c.signup_date < o.sale_date;
 ```
 
-###7. Each customer and total money spent (quantity × price)
+### 7. Each customer and total money spent (quantity × price)
 
 ```sql
 SELECT c.customer_id, c.customer_name,
@@ -169,7 +169,7 @@ INNER JOIN products p ON o.product_id = p.product_id
 GROUP BY c.customer_id, c.customer_name;
 ```
 
-###8. Products ordered more than 3 times
+### 8. Products ordered more than 3 times
 
 ```sql
 SELECT p.product_name, COUNT(o.order_id) AS total_orders
@@ -179,7 +179,7 @@ GROUP BY p.product_name
 HAVING COUNT(o.order_id) > 3;
 ```
 
-###9. Top 5 customers who spent the most money
+### 9. Top 5 customers who spent the most money
 
 ```sql
 SELECT c.customer_name,
@@ -192,7 +192,7 @@ ORDER BY total_spent DESC
 LIMIT 5;
 ```
 
-###10. Orders with total order value > 1000
+### 10. Orders with total order value > 1000
 
 ```sql
 SELECT o.*, p.product_name, (o.quantity * p.price) AS total_value
@@ -201,7 +201,7 @@ INNER JOIN products p ON o.product_id = p.product_id
 WHERE (o.quantity * p.price) > 1000;
 ```
 
-###11. All customers and their orders (include customers with no orders)
+### 11. All customers and their orders (include customers with no orders)
 
 ```sql
 SELECT c.*, o.order_id, o.sale_date
@@ -209,7 +209,7 @@ FROM customers c
 LEFT JOIN orders o ON c.customer_id = o.customer_id;
 ```
 
-###12. Customers with no orders
+### 12. Customers with no orders
 
 ```sql
 SELECT c.*
@@ -218,7 +218,7 @@ LEFT JOIN orders o ON c.customer_id = o.customer_id
 WHERE o.order_id IS NULL;
 ```
 
-###13. Products and matching orders (include products never ordered)
+### 13. Products and matching orders (include products never ordered)
 
 ```sql
 SELECT p.*, o.order_id, o.quantity
@@ -226,7 +226,7 @@ FROM products p
 LEFT JOIN orders o ON p.product_id = o.product_id;
 ```
 
-###14. East region customers and their orders
+### 14. East region customers and their orders
 
 ```sql
 SELECT c.*, o.order_id
@@ -235,7 +235,7 @@ LEFT JOIN orders o ON c.customer_id = o.customer_id
 WHERE c.region = 'East';
 ```
 
-###15. All orders including those with invalid product_id
+### 15. All orders including those with invalid product_id
 
 ```sql
 SELECT o.*, p.product_name
@@ -243,7 +243,7 @@ FROM orders o
 LEFT JOIN products p ON o.product_id = p.product_id;
 ```
 
-###16. All products and customers who bought them
+### 16. All products and customers who bought them
 
 ```sql
 SELECT p.*, o.order_id, c.customer_name
@@ -252,7 +252,7 @@ RIGHT JOIN orders o ON p.product_id = o.product_id
 RIGHT JOIN customers c ON o.customer_id = c.customer_id;
 ```
 
-###17. All customers and their orders (keep all orders)
+### 17. All customers and their orders (keep all orders)
 
 ```sql
 SELECT o.*, c.customer_name
@@ -260,7 +260,7 @@ FROM orders o
 RIGHT JOIN customers c ON o.customer_id = c.customer_id;
 ```
 
-###18. Orders not matching any product
+### 18. Orders not matching any product
 
 ```sql
 SELECT o.*
@@ -269,7 +269,7 @@ LEFT JOIN products p ON o.product_id = p.product_id
 WHERE p.product_id IS NULL;
 ```
 
-###19. All customers and all orders (full outer join)
+### 19. All customers and all orders (full outer join)
 
 ```sql
 SELECT c.*, o.*
@@ -278,7 +278,7 @@ FULL OUTER JOIN orders o
 ON c.customer_id = o.customer_id;
 ```
 
-###20. All products and all orders (full outer join)
+### 20. All products and all orders (full outer join)
 
 ```sql
 SELECT p.*, o.*
@@ -287,7 +287,7 @@ FULL OUTER JOIN orders o
 ON p.product_id = o.product_id;
 ```
 
-###21. Unmatched customers + unmatched orders
+### 21. Unmatched customers + unmatched orders
 
 ```sql
 SELECT *
@@ -296,7 +296,7 @@ FULL OUTER JOIN orders o ON c.customer_id = o.customer_id
 WHERE c.customer_id IS NULL OR o.customer_id IS NULL;
 ```
 
-###22. All possible combinations of customers and products
+### 22. All possible combinations of customers and products
 
 ```sql
 SELECT c.customer_name, p.product_name
@@ -304,7 +304,7 @@ FROM customers c
 CROSS JOIN products p;
 ```
 
-###23. All combinations of products and regions
+### 23. All combinations of products and regions
 
 ```sql
 SELECT DISTINCT c.region, p.product_name
@@ -312,7 +312,7 @@ FROM customers c
 CROSS JOIN products p;
 ```
 
-###24. All customer–product combos where price > 400
+### 24. All customer–product combos where price > 400
 
 ```sql
 SELECT c.customer_name, p.product_name, p.price
@@ -321,7 +321,7 @@ CROSS JOIN products p
 WHERE p.price > 400;
 ```
 
-###25. Customers who share the same region (self join)
+### 25. Customers who share the same region (self join)
 
 ```sql
 SELECT c1.customer_name AS customer1,
@@ -332,7 +332,7 @@ INNER JOIN customers c2
 ON c1.region = c2.region AND c1.customer_id <> c2.customer_id;
 ```
 
-###26. Customers with same signup date
+### 26. Customers with same signup date
 
 ```sql
 SELECT c1.customer_name, c2.customer_name, c1.signup_date
@@ -342,7 +342,7 @@ ON c1.signup_date = c2.signup_date
 AND c1.customer_id <> c2.customer_id;
 ```
 
-###27. Same region but one signed up earlier
+### 27. Same region but one signed up earlier
 
 ```sql
 SELECT c1.customer_name AS earlier_signup,
@@ -354,7 +354,7 @@ ON c1.region = c2.region
 AND c1.signup_date < c2.signup_date;
 ```
 
-###28. Full order details (3-table join)
+### 28. Full order details (3-table join)
 
 ```sql
 SELECT o.order_id, c.customer_name, p.product_name, p.category, p.price, o.quantity
@@ -363,7 +363,7 @@ INNER JOIN customers c ON o.customer_id = c.customer_id
 INNER JOIN products p ON o.product_id = p.product_id;
 ```
 
-###29. Customers + orders + total money spent per order
+### 29. Customers + orders + total money spent per order
 
 ```sql
 SELECT c.customer_name, o.order_id,
@@ -373,7 +373,7 @@ INNER JOIN orders o ON c.customer_id = o.customer_id
 INNER JOIN products p ON o.product_id = p.product_id;
 ```
 
-###30. Highest-value order in each product category
+### 30. Highest-value order in each product category
 
 ```sql
 SELECT category, order_id, max(total_value)
