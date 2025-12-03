@@ -1,7 +1,7 @@
 ---
 title: PostgreSQL Joins
 summary: Querry using Joins.
-date: 2025-12-3
+date: 2025-12-03
 authors:
   - admin
 tags:
