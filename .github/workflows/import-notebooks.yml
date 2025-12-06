@@ -1,5 +1,5 @@
-# Hugo Blox GitHub Action to import Jupyter Notebooks as blog posts
-name: Import Jupyter Notebooks as Blog Posts
+# Hugo Blox GitHub Action to import Jupyter Notebooks as blog mls
+name: Import Jupyter Notebooks as Blog ml
 
 # Require permission to create a PR
 permissions:
@@ -31,21 +31,19 @@ jobs:
           python -m pip install --upgrade pip
           pip install academic==0.11.2
       - name: Run Academic Converter Tool
-        run: academic import 'notebooks/*.ipynb' content/post/ --verbose
+        run: academic import 'notebooks/*.ipynb' content/ML/ --verbose
       - name: Create Pull Request
         # Set ID for `Check outputs` stage
         id: cpr
         uses: peter-evans/create-pull-request@v5
         with:
-          commit-message: 'content: import blog posts from `notebooks/` folder'
-          title: Hugo Blox Builder - Import latest blog posts
+          commit-message: 'content: import blog ML from `notebooks/` folder'
+          title: Hugo Blox Builder - Import latest blog ML
           body: |
-            Convert Jupyter Notebooks in the `notebooks/` folder into blog posts in the `content/post/` folder.
-            将`notebooks/`文件夹中的Jupyter笔记本转换为`content/post/`文件夹中的博客帖子。
-            [View Documentation](https://github.com/GetRD/academic-file-converter)
+            Convert Jupyter Notebooks in the `notebooks/` folder into blog ML in the `content/ML/` folder.
           base: main
           labels: automated-pr, content
-          branch: hugoblox-import-posts
+          branch: hugoblox-import-ml
           delete-branch: true
       - name: Check outputs
         if: ${{ steps.cpr.outputs.pull-request-number }}

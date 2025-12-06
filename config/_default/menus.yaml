@@ -8,9 +8,9 @@ main:
   - name: Topics
     url: tags/
     weight: 20
-  # - name: Uses
-  #   url: uses/
-  #   weight: 30
+  - name: ML
+    url: ML/
+    weight: 20
   - name: About
     url: https://mioyn.github.io/about
     weight: 40
