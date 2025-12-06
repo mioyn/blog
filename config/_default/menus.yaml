@@ -9,7 +9,7 @@ main:
     url: tags/
     weight: 20
   - name: ML
-    url: ML/
+    url: ml/
     weight: 20
   - name: About
     url: https://mioyn.github.io/about
