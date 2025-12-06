@@ -10,7 +10,7 @@ main:
     weight: 20
   - name: ML
     url: ml/
-    weight: 20
+    weight: 30
   - name: About
     url: https://mioyn.github.io/about
     weight: 40
