@@ -1,6 +1,10 @@
 ---
-title: '# **Discrete, Continuous, Nominal, and Ordinal Data**'
+title: 'Types of Data'
 date: '2025-12-06'
+math: true
+tags:
+  - Probability
+  - Data Analytics
 ---
 
 

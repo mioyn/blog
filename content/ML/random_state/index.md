@@ -1,6 +1,9 @@
 ---
 title: Random State
 date: '2025-12-06'
+math: true
+tags:
+  - ML
 ---
 
 

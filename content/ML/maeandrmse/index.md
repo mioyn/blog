@@ -1,6 +1,10 @@
 ---
-title: Maeandrmse
+title: MAE and RMSE
 date: '2025-12-06'
+math: true
+tags:
+  - ML
+  - Data Analytics
 ---
 Common performance measures for regression problems are Mean Absolute Error (MAE), Mean Squared Error (MSE) and Root Mean Squared Error (RMSE)
 # Mean Absolute Error - MAE

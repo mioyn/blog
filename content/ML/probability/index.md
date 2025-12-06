@@ -1,6 +1,10 @@
 ---
 title: Probability
 date: '2025-12-06'
+math: true
+tags:
+  - Probability
+  - Data Analytics
 ---
 
 Probability is the measure of how likely an event is to occur. It’s a fundamental concept in mathematics and statistics used to quantify uncertainty.

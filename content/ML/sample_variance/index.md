@@ -1,6 +1,10 @@
 ---
 title: Understanding Sample Variance
 date: '2025-12-06'
+math: true
+tags:
+  - Probability
+  - Data Analytics
 ---
 
 Sample variance is a statistical measure that tells us how spread out the data points are in a sample. It helps quantify the variability of the sample values from the sample mean.
