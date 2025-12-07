@@ -1,9 +1,13 @@
 ---
-title: Imputation (Handling Missing Values)
+title: Feature Engineering
 date: '2025-12-07'
+math: true
+tags:
+  - ML
+  - Data Analytics
 ---
 
-
+## Imputation (Handling Missing Values)
 Many real world datasets contain missing values, often encoded as blanks, NaNs or other placeholders. A basic strategy to use incomplete datasets is to discard entire rows and/or columns containing missing values. However, this comes at the price of losing data which may be valuable (even though incomplete). A better strategy is to impute the missing values.
 
 Set the missing values to some value(Zero, the mean, the median, etc.)
@@ -29,7 +33,7 @@ print(imp.transform(X))
      [6.         3.66666667]
      [7.         6.        ]]
 
-# Outlier Detection & Removal
+## Outlier Detection & Removal
 ### Interquartile Range (IQR) Method
 
 ```python
@@ -54,7 +58,7 @@ def remove_outliers_iqr(df, column):
 df = remove_outliers_iqr(df.copy(), 'salary')
 ```
 
-# Encoding
+## Encoding
 Scikit-Learn provides a OneHotEncoder class to convert categorical values into one-hot vectors
 Output of OneHotEncoder is sparse matrix. A sparse matrix contains mostly zeros. Internally it only stores the nonzero values and their positions. when you have more categories it will save plenty of memory and speed up computations.
 
@@ -69,7 +73,7 @@ cat_1hot = encoder.fit_transform(housing_cat)
 encoder.categories_
 ```
 
-# Feature Scaling
+## Feature Scaling
 
 The MinMax Scaler is a data preprocessing technique used to transform numerical features in a dataset to a specific range, typically between 0 and 1. This is also commonly referred to as normalization. The core idea is to make the minimum value in a feature column equal to 0, the maximum value equal to 1, and all other values fall proportionally in between.
 
@@ -107,7 +111,7 @@ To ensure all features contribute equally, a MinMaxScaler is applied: Vibration 
 #### The Result:
 The scaled features are all on the same playing field. The machine learning model can now effectively analyze patterns across all three features simultaneously. A sudden spike in vibration, even though its raw value is small, will have an impact comparable to a spike in temperature or energy consumption in the scaled data, leading to faster and more accurate predictions of potential equipment failure.
 
-# Binning/Discretization
+## Binning/Discretization
 
 Grouping continuous data into discrete bins or intervals.
 
