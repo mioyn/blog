@@ -1,5 +1,5 @@
 ---
-title: '# ML Regression California housing model'
+title: 'ML Regression California housing model'
 date: '2025-12-13'
 math: true
 tags:
