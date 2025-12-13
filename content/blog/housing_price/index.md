@@ -20,7 +20,7 @@ import seaborn as sns
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OrdinalEncoder
 ```
-
+## Load Data
 ```python
 def load_housingdata():
     tarball_path = Path("datasets/housing.tgz")
@@ -350,7 +350,9 @@ for i, column in enumerate(numeric_columns, 1):
     
 ![png](output_5_8.png)
     
+## Binning/Discretization
 
+Grouping continuous data into discrete bins or intervals.
 ```python
 housing_df['income_cat'] = pd.cut(
     housing_df['median_income'],
@@ -366,7 +368,7 @@ plt.show()
     
 ![png](output_6_0.png)
     
-
+## Create Test and Train Set
 ```python
 strat_train_set, strat_test_set = train_test_split(
     housing_df,
@@ -385,12 +387,12 @@ strat_train_set["income_cat"].value_counts() / len(strat_train_set)
     5    0.114462
     1    0.039789
     Name: count, dtype: float64
-
+### Drop income_cat once Test and Train Set are created
 ```python
 for set_ in (strat_train_set, strat_test_set):
     set_.drop("income_cat", axis=1, inplace=True)
 ```
-
+## Visualizing geographical Data
 ```python
 housing_c = strat_train_set.copy()
 housing_c.plot(kind="scatter", x="longitude", y="latitude", alpha=0.2, grid=True)
@@ -412,7 +414,7 @@ plt.show()
     
 ![png](output_10_0.png)
     
-
+## Look for Corelations
 ```python
 attributes = ["median_house_value", "median_income", "total_rooms", "housing_median_age"]
 
@@ -446,12 +448,15 @@ plt.show()
     
 ![png](output_12_0.png)
     
-
+## Prepare Data
+### Seperate predictors and labels 
 ```python
 housing = strat_train_set.drop("median_house_value", axis=1)
 housing_labels = strat_train_set["median_house_value"].copy()
 ```
+### Clean data
 
+## Custom Tranformer
 ```python
 from sklearn.pipeline import make_pipeline, Pipeline
 from sklearn.impute import SimpleImputer
@@ -462,7 +467,10 @@ from sklearn.metrics.pairwise import rbf_kernel
 from sklearn.preprocessing import OneHotEncoder
 
 from sklearn.cluster import KMeans
+```
 
+```python
+# using kmeans to find cluster similarity
 class ClusterSimilarity(BaseEstimator, TransformerMixin):
     def __init__(self, n_clusters=10, random_state=None, gamma=1.0):
         self.n_clusters = n_clusters
@@ -479,24 +487,31 @@ class ClusterSimilarity(BaseEstimator, TransformerMixin):
 
     def get_feature_names_out(self, input_features=None):
         return [f"cluster {i} similarity" for i in range(self.n_clusters)]
-
+```
+### Pipelines
+```python
+# function to find ratio for columns 
+# number of bedrooms  "total_bedrooms" / "total_rooms"
 def column_ratio(x):
     return x[:, [0]] / x[:, [1]]
 
+# add colum name for created ratio column
 def ratio_name(function_transformer, feature_names_in):
     return ["ratio"]
 
+# ratio pipeline
 def ratio_pipeline():
     return make_pipeline(
         SimpleImputer(strategy="median"),
         FunctionTransformer(column_ratio, feature_names_out=ratio_name),
         StandardScaler())
-
+# logtransform for heavy tailed distribution
 logging_pipeline = make_pipeline(
     SimpleImputer(strategy="median"),
     FunctionTransformer(np.log, feature_names_out="one-to-one"),
     StandardScaler())
 
+# One hot encoder for categorical data
 cat_pipeline = make_pipeline(
     SimpleImputer(strategy="most_frequent"),
     OneHotEncoder(handle_unknown="ignore"))
@@ -506,7 +521,9 @@ cluster_simil = ClusterSimilarity(n_clusters=10, random_state=42, gamma=1.0)
 default_num_pipeline = make_pipeline(
     SimpleImputer(strategy="median"),
     StandardScaler())
+```
 
+```python
 preprocessing = ColumnTransformer([
     ("bedrooms", ratio_pipeline(), ["total_bedrooms", "total_rooms"]),
     ("rooms_per_house", ratio_pipeline(), ["total_rooms", "households"]),
@@ -541,6 +558,8 @@ preprocessing.get_feature_names_out()
            'cat__ocean_proximity_NEAR BAY', 'cat__ocean_proximity_NEAR OCEAN',
            'remainder__housing_median_age'], dtype=object)
 
+## Find Best modal
+### LinearRegression
 ```python
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
@@ -560,6 +579,7 @@ print("MAE:", mean_avg_error)
     RMSE: 68972.88910758452
     MAE: 51301.0044458925
 
+### DecisionTreeRegressor
 ```python
 from sklearn.tree import DecisionTreeRegressor
 
@@ -597,6 +617,7 @@ print("Mean:", scores.mean())
      66367.48227837 66208.69621463]
     Mean: 66573.73460009348
 
+### RandomForestRegressor
 ```python
 from sklearn.ensemble import RandomForestRegressor
 forest_reg = make_pipeline(
@@ -618,6 +639,8 @@ print("Mean:", forest_rmse_scores.mean())
      45911.17628527 47730.60806253 47561.15494003 49140.83221016
      47121.06435179 47116.37414628]
     Mean: 47038.09279895258
+
+### GridSearchCV and RandomizedSearchCV
 
 ```python
 from sklearn.model_selection import GridSearchCV
@@ -2877,6 +2900,7 @@ rnd_search.best_params_
 
     {'preprocessing__geo__n_clusters': 45, 'random_forest__max_features': 9}
 
+### Find important features
 ```python
 final_model = rnd_search.best_estimator_
 feature_importances = final_model.named_steps['random_forest'].feature_importances_
@@ -2956,6 +2980,7 @@ print("Final RMSE on Test Set:", final_rmse)
 
     Final RMSE on Test Set: 41445.533268606625
 
+## Save Model
 ```python
 import joblib
 joblib.dump(final_model, "housing_model.pkl")
