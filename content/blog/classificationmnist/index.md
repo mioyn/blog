@@ -1,7 +1,20 @@
 ---
-title: Classificationmnist
+title: ML Classification MNIST DataSet
 date: '2025-12-24'
+math: true
+tags:
+  - ML
+  - Data Analytics
 ---
+
+Classification is a supervised learning task where an algorithm learns to categorize input data into discrete, predefined groups or "classes". 
+
+### Common Types of Classification
+* Binary Classification: Predicting between exactly two classes, such as "True" or "False".
+* Multiclass Classification: Predicting one label from more than two categories (e.g., identifying any digit from 0–9 in MNIST).
+* Multilabel Classification: Assigning multiple labels to a single instance, such as tagging a photo with "cat," "outside," and "sunny".
+
+## Load Data
 ```python
 from sklearn.datasets import fetch_openml
 """Load the MNIST dataset from OpenML.
@@ -26,7 +39,7 @@ X
 ```python
 y
 ```
-
+    array(['5', '0', '4', ..., '4', '5', '6'], dtype=object)
 ```python
 import matplotlib.pyplot as plt
 def plot_digit(data):
@@ -44,19 +57,21 @@ plt.show()
 
 print("Label:", y[0])
 ```
-
+### Image and label
     
 ![png](output_2_0.png)
     
 
     Label: 5
-
+## Create Test and Train Set
 ```python
 from sklearn.model_selection import train_test_split
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 ```
 
+## Find Best modal
+### SGDClassifier
 ```python
 from sklearn.preprocessing import StandardScaler, FunctionTransformer
 from sklearn.pipeline import Pipeline
@@ -122,7 +137,7 @@ random_search.best_params_
 ```python
 final_model = random_search.best_estimator_
 ```
-
+### Predict using final model
 ```python
 y_pred = final_model.predict(X_test)
 # print("Predicted digit:", y_pred[0])
@@ -233,7 +248,7 @@ plt.show()
     
 ![png](output_12_1.png)
     
-
+### KNeighborsClassifier
 ```python
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import RandomizedSearchCV
