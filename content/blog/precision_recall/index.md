@@ -1,9 +1,15 @@
 ---
-title: '## Precision'
+title: 'Precision and Recall'
 date: '2025-12-29'
+math: true
+tags:
+  - ML
+  - Data Analytics
 ---
-
+Fundamental evaluation metrics used in machine learning classification are Precision, Recall, and the F1 score
+### Precision
 Precision measures how many of the items your model labeled as positive were actually positive.
+
 $$
 Precision = \frac{True Positives}
 {True Positives + False Positives}
