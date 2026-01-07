@@ -14,7 +14,7 @@ marketing:
     site_type: Person
     local_business_type: ''
     org_name: ''
-    description: 'A highly-customizable Hugo blog theme powered by Hugo Blox Builder.'
+    description: 'A tech blog for developers and data professionals exploring Machine Learning, AI, Data Analytics, SQL, and DevOps through concise tutorials and best practices.'
     twitter: 'GetResearchDev'
   analytics:
     google_analytics: ''
