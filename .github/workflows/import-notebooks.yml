@@ -1,5 +1,5 @@
-# Hugo Blox GitHub Action to import Jupyter Notebooks as blog
-name: Import Jupyter Notebooks as Blog
+# Hugo Blox GitHub Action to import Jupyter Notebooks as posts
+name: Import Jupyter Notebooks as posts
 
 # Require permission to create a PR
 permissions:
@@ -31,16 +31,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install academic==0.11.2
       - name: Run Academic Converter Tool
-        run: academic import 'notebooks/*.ipynb' content/blog/ --verbose
+        run: academic import 'notebooks/*.ipynb' content/posts/ --verbose
       - name: Create Pull Request
         # Set ID for `Check outputs` stage
         id: cpr
         uses: peter-evans/create-pull-request@v5
         with:
-          commit-message: 'content: import blog from `notebooks/` folder'
-          title: Hugo Blox Builder - Import latest blog 
+          commit-message: 'content: import posts from `notebooks/` folder'
+          title: Hugo Blox Builder - Import latest posts 
           body: |
-            Convert Jupyter Notebooks in the `notebooks/` folder into blog  in the `content/blog/` folder.
+            Convert Jupyter Notebooks in the `notebooks/` folder into posts  in the `content/posts/` folder.
           base: main
           labels: automated-pr, content
           branch: hugoblox-import-ml
