@@ -7,6 +7,10 @@ tags:
   - Data Analytics
 ---
 Fundamental evaluation metrics used in machine learning classification are Precision, Recall, and the F1 score
+
+<img src="confusion.png" alt="Confusion Matrix" style="max-width: 700px; width: 100%;" />
+
+
 ### Precision
 Precision measures how many of the items your model labeled as positive were actually positive.
 
