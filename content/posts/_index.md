@@ -1,4 +1,4 @@
 ---
 title: Posts
-view: article-grid
+view: masonry
 ---
