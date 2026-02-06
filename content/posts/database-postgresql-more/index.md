@@ -272,7 +272,7 @@ SELECT
     ) AS customer_initial_and_region
 FROM customers;
 ``` 
-### 17. CONCAT + SUBSTRING + CAST** Show a product label like:
+### 17. CONCAT + SUBSTRING + CAST Show a product label like:
 `P<product_id> - <first 4 letters of name>`
 
 ```sql
@@ -314,7 +314,7 @@ SELECT
     END AS date_status
 FROM orders;
 ``` 
-### 20. ROUND + EXTRACT** Show average order amount per day of the week (rounded to 1 decimal).
+### 20. ROUND + EXTRACT Show average order amount per day of the week (rounded to 1 decimal).
 
 ```sql
 SELECT 
