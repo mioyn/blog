@@ -323,7 +323,7 @@ SELECT
 FROM orders
 GROUP BY weekday;
 ``` 
-### 21. COALESCE + CEIL** Use CEIL on amount but replace NULLs with 0.
+### 21. COALESCE + CEIL Use CEIL on amount but replace NULLs with 0.
 
 ```sql
 SELECT 
